@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="pl">
 <head>
     <title>mObywatel</title>
     <meta charset="UTF-8">
@@ -15,16 +17,33 @@
     
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> 
     
-    <meta name="theme-color" content="#121212"> 
+    <meta name="theme-color" content="#121212">
+    <style>
+        /* Zabezpieczenie obrazów poprzez tło */
+        .flag_video, .eagle_video {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: block;
+        }
+        /* Dodatkowe zabezpieczenie przed menu kontekstowym na całej stronie (opcjonalnie) */
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+        }
+    </style>
 </head>
-<body class="has-blur-topbar">
+<body class="has-blur-topbar" oncontextmenu="return false;">
     <div class="top_grid topbar-always">
         <div class="action_grid">
-            <img src="https://i.imgur.com/aXIO2NG.png" class="back_img">
+            <img src="https://i.imgur.com/aXIO2NG.png" class="back_img" draggable="false">
             <p onclick="sendTo('home')" class="back_text">Wróć</p>
         </div>
         <p class="title_text">mDowód</p>
-        <img src="https://i.imgur.com/VHNv1TC.png" class="help_img">
+        <img src="https://i.imgur.com/VHNv1TC.png" class="help_img" draggable="false">
     </div>
 
     <div class="bottom_bar">
@@ -50,15 +69,14 @@
     <p class="time_text" id="time"></p>
     <div class="id_image_data">
         <img draggable="false" class="id_image" src="https://i.imgur.com/Ssv8rps.jpeg">
-        <div class="inset">
-
-<!-- Oryginalne tło, którego nie dało się zapisać -->
-<div class="id_own_image" style="background-image: url('https://i.imgur.com/7vHo48p.jpg' );"></div>
-
-<!-- Zastąpione obrazy, których teraz również nie da się łatwo zapisać -->
-<div class="flag_video" style="background-image: url('https://i.imgur.com/I7oPp72.gif' ); background-size: cover; background-position: center;"></div>
-<div class="eagle_video" style="background-image: url('https://i.imgur.com/EbBJWYb.gif' ); background-size: cover; background-position: center;"></div>
-
+        <div class="inset"></div>
+        
+        <div class="id_own_image" style="background-image: url('https://i.imgur.com/7vHo48p.jpg');"></div>
+        
+        <!-- Zmienione na div z tłem -->
+        <div class="flag_video" style="background-image: url('https://i.imgur.com/I7oPp72.gif');"></div>
+        <div class="eagle_video" style="background-image: url('https://i.imgur.com/EbBJWYb.gif');"></div>
+        
         <p class="eagle_text">Rzeczpospolita<br>Polska</p>
         <div class="id_data_grid">
             <div class="data_holder">
@@ -85,42 +103,39 @@
     </div>
     <div class="id_bottom">
         <div class="bottom_grid">
-            <img class="bottom_image" src="https://i.imgur.com/bdx9fzT.png">
+            <img class="bottom_image" src="https://i.imgur.com/bdx9fzT.png" draggable="false">
             <p class="bottom_text" style="color: #17bf2d; font-size: 17px;">Dokument ważny</p>
-        </div>
         </div>
     </div>
     
     <div class="top-buttons">
         <button onclick="sendTo('qr')">
           <div class="icon-circle">
-            <img src="https://i.imgur.com/DGBsoYY.png"alt="Potwierdź">
+            <img src="https://i.imgur.com/DGBsoYY.png" alt="Potwierdź" draggable="false">
           </div>
           <span>Potwierdź<br>swoje&nbsp;dane</span>
-
         </button>
       
         <button onclick="sendTo('moreid')">
           <div class="icon-circle">
-            <img src="https://i.imgur.com/2SPOxrW.png" alt="Dowód">
+            <img src="https://i.imgur.com/2SPOxrW.png" alt="Dowód" draggable="false">
           </div>
           <span>Dane<br>dowodu<br>osobistego</span>
         </button>
       
         <button onclick="sendTo('pesel')">
             <div class="icon-circle">
-              <img src="https://i.imgur.com/aDXGRtB.png" alt="PESEL">
+              <img src="https://i.imgur.com/aDXGRtB.png" alt="PESEL" draggable="false">
             </div>
             <span>Zastrzeż PESEL</span>
           </button>
           
       <button onclick="sendTo('shortcuts')">
             <div class="icon-circle">
-              <img src="https://i.imgur.com/KYGZHxe.png" alt="Więcej">
+              <img src="https://i.imgur.com/KYGZHxe.png" alt="Więcej" draggable="false">
             </div>
             <span>Pozostałe skróty</span>
           </button>
-
       </div>
             
             <div class="card custom-card">
@@ -161,7 +176,7 @@
             <div class="bottom_grid">
                 <p class="bottom_text" style="color: var(--font); margin-left: 0px;">Twoje dodatkowe dane</p>
             </div>
-            <img class="action_arrow" src="https://i.imgur.com/lTxuUMF.png">
+            <img class="action_arrow" src="https://i.imgur.com/lTxuUMF.png" draggable="false">
             <div class="additional_holder">
                 <div class="additional_grid">
                     <p class="additional_title">Nazwisko rodowe</p>
@@ -207,10 +222,9 @@
             </div>
         </div>
     </div>
-    <div class="bottomtesktern" style="height: 8px; margin-bottom: 120px;">
-                    
-                </div>
+    <div class="bottomtesktern" style="height: 8px; margin-bottom: 120px;"></div>
     <script src="assets/bar.js" defer></script>
     <script src="assets/card.js?v=1.0"></script>
     <script src="assets/manifest.js"></script>
 </body>
+</html>
