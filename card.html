@@ -15,7 +15,25 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> 
     <meta name="theme-color" content="#121212">
     <style>
+        /* NAJSKUTECZNIEJSZA I NAJCZYSTSZA METODA OCHRONY */
+        
+        /* Blokuje menu kontekstowe i przeciąganie na wszystkich obrazach */
+        img {
+            pointer-events: none !important;
+            -webkit-user-drag: none !important;
+            user-drag: none !important;
+        }
 
+        /* Blokuje interakcję z elementami tła */
+        .id_own_image {
+            pointer-events: none !important;
+        }
+
+        /* Upewniamy się, że dane tekstowe są zawsze na wierzchu i klikalne */
+        .id_data_grid {
+            position: relative;
+            z-index: 5;
+        }
     </style>
 </head>
 <body class="has-blur-topbar" oncontextmenu="return false;">
@@ -52,15 +70,13 @@
     <p class="time_text" id="time"></p>
     
     <div class="id_image_data">
-        <!-- NAKŁADKA OCHRONNA - blokuje kliknięcia w całą sekcję dowodu -->
-        <div class="protection-overlay"></div>
+        <!-- USUNIĘTO NAKŁADKĘ, KTÓRA BLOKOWAŁA TEKST -->
 
         <img draggable="false" class="id_image" src="https://i.imgur.com/Ssv8rps.jpeg">
         <div class="inset"></div>
         
         <div class="id_own_image" style="background-image: url('https://i.imgur.com/7vHo48p.jpg');"></div>
         
-        <!-- Przywrócone oryginalne znaczniki img dla poprawnego układu -->
         <img draggable="false" src="https://i.imgur.com/I7oPp72.gif" class="flag_video">
         <img draggable="false" src="https://i.imgur.com/EbBJWYb.gif" class="eagle_video">
         
