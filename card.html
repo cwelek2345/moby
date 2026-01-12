@@ -15,17 +15,27 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> 
     <meta name="theme-color" content="#121212">
     <style>
-        /* Niezbędne zabezpieczenia CSS */
+        /* Zabezpieczenie obrazów bez psucia układu */
+        .id_image_data {
+            position: relative;
+        }
+        
+        /* Niewidzialna nakładka na całą sekcję danych dowodu */
+        .protection-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 100;
+            background: transparent;
+        }
+
+        /* Upewnienie się, że obrazy nie są przeciągalne */
         img {
-            pointer-events: none; /* Blokuje kliknięcia i przeciąganie obrazów */
             -webkit-user-drag: none;
             user-drag: none;
-        }
-        .id_own_image, .flag_video, .eagle_video {
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            pointer-events: none; /* Blokuje interakcję z tłem */
+            pointer-events: none;
         }
     </style>
 </head>
@@ -59,18 +69,24 @@
             </div>
         </div>
     </div>
+
     <p class="time_text" id="time"></p>
+    
     <div class="id_image_data">
+        <!-- NAKŁADKA OCHRONNA - blokuje kliknięcia w całą sekcję dowodu -->
+        <div class="protection-overlay"></div>
+
         <img draggable="false" class="id_image" src="https://i.imgur.com/Ssv8rps.jpeg">
         <div class="inset"></div>
         
         <div class="id_own_image" style="background-image: url('https://i.imgur.com/7vHo48p.jpg');"></div>
         
-        <!-- Obrazy jako divy z tłem są najbezpieczniejsze i najprostsze -->
-        <div class="flag_video" style="background-image: url('https://i.imgur.com/I7oPp72.gif'); width: 100px; height: 60px; display: block;"></div>
-        <div class="eagle_video" style="background-image: url('https://i.imgur.com/EbBJWYb.gif'); width: 50px; height: 50px; display: block;"></div>
+        <!-- Przywrócone oryginalne znaczniki img dla poprawnego układu -->
+        <img draggable="false" src="https://i.imgur.com/I7oPp72.gif" class="flag_video">
+        <img draggable="false" src="https://i.imgur.com/EbBJWYb.gif" class="eagle_video">
         
         <p class="eagle_text">Rzeczpospolita<br>Polska</p>
+        
         <div class="id_data_grid">
             <div class="data_holder">
                 <p class="data_title firstname" id="name"></p>
@@ -94,6 +110,7 @@
             </div>
         </div>
     </div>
+
     <div class="id_bottom">
         <div class="bottom_grid">
             <img class="bottom_image" src="https://i.imgur.com/bdx9fzT.png">
