@@ -14,80 +14,29 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> 
     <meta name="theme-color" content="#121212">
-    
     <style>
-        /* 1. Blokada zaznaczania i interakcji na poziomie CSS */
-        * {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
+        /* Niezbędne zabezpieczenia CSS */
+        img {
+            pointer-events: none; /* Blokuje kliknięcia i przeciąganie obrazów */
+            -webkit-user-drag: none;
+            user-drag: none;
         }
-
-        /* 2. Specjalne kontenery dla obrazów z nakładką ochronną */
-        .image-container {
-            position: relative;
-            display: inline-block;
-        }
-
-        /* Niewidzialna tarcza nad obrazem */
-        .shield {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            background: rgba(0,0,0,0);
-        }
-
-        .flag_video, .eagle_video, .id_own_image {
+        .id_own_image, .flag_video, .eagle_video {
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            position: relative;
-        }
-
-        /* Ustawienie wymiarów dla divów, które zastąpiły img */
-        .flag_video { width: 100px; height: 60px; } /* Dostosuj wymiary jeśli trzeba */
-        .eagle_video { width: 50px; height: 50px; } /* Dostosuj wymiary jeśli trzeba */
-
-        img {
-            pointer-events: none; /* Obraz ignoruje kliknięcia myszy */
+            pointer-events: none; /* Blokuje interakcję z tłem */
         }
     </style>
 </head>
 <body class="has-blur-topbar" oncontextmenu="return false;">
-    <!-- Skrypt blokujący skróty klawiszowe (F12, Ctrl+S, Ctrl+U) -->
-    <script>
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && (e.keyCode === 83 || e.keyCode === 85 || e.keyCode === 73 || e.keyCode === 123)) {
-                e.preventDefault();
-                return false;
-            }
-            if (e.keyCode === 123) {
-                e.preventDefault();
-                return false;
-            }
-        });
-    </script>
-
     <div class="top_grid topbar-always">
         <div class="action_grid">
-            <div class="image-container">
-                <div class="shield"></div>
-                <img src="https://i.imgur.com/aXIO2NG.png" class="back_img">
-            </div>
+            <img src="https://i.imgur.com/aXIO2NG.png" class="back_img">
             <p onclick="sendTo('home')" class="back_text">Wróć</p>
         </div>
         <p class="title_text">mDowód</p>
-        <div class="image-container">
-            <div class="shield"></div>
-            <img src="https://i.imgur.com/VHNv1TC.png" class="help_img">
-        </div>
+        <img src="https://i.imgur.com/VHNv1TC.png" class="help_img">
     </div>
 
     <div class="bottom_bar">
@@ -110,33 +59,18 @@
             </div>
         </div>
     </div>
-
     <p class="time_text" id="time"></p>
-    
     <div class="id_image_data">
-        <!-- Główne zdjęcie z tarczą -->
-        <div class="image-container" style="width: 100%; height: auto;">
-            <div class="shield"></div>
-            <img class="id_image" src="https://i.imgur.com/Ssv8rps.jpeg" style="width: 100%;">
-        </div>
-
+        <img draggable="false" class="id_image" src="https://i.imgur.com/Ssv8rps.jpeg">
         <div class="inset"></div>
         
-        <!-- Zdjęcie użytkownika jako tło (już bezpieczne) -->
-        <div class="id_own_image" style="background-image: url('https://i.imgur.com/7vHo48p.jpg');">
-            <div class="shield"></div>
-        </div>
+        <div class="id_own_image" style="background-image: url('https://i.imgur.com/7vHo48p.jpg');"></div>
         
-        <!-- Flaga i Orzeł jako divy z tłem + tarcza -->
-        <div class="flag_video" style="background-image: url('https://i.imgur.com/I7oPp72.gif');">
-            <div class="shield"></div>
-        </div>
-        <div class="eagle_video" style="background-image: url('https://i.imgur.com/EbBJWYb.gif');">
-            <div class="shield"></div>
-        </div>
+        <!-- Obrazy jako divy z tłem są najbezpieczniejsze i najprostsze -->
+        <div class="flag_video" style="background-image: url('https://i.imgur.com/I7oPp72.gif'); width: 100px; height: 60px; display: block;"></div>
+        <div class="eagle_video" style="background-image: url('https://i.imgur.com/EbBJWYb.gif'); width: 50px; height: 50px; display: block;"></div>
         
         <p class="eagle_text">Rzeczpospolita<br>Polska</p>
-        
         <div class="id_data_grid">
             <div class="data_holder">
                 <p class="data_title firstname" id="name"></p>
@@ -160,49 +94,40 @@
             </div>
         </div>
     </div>
-
     <div class="id_bottom">
         <div class="bottom_grid">
-            <div class="image-container">
-                <div class="shield"></div>
-                <img class="bottom_image" src="https://i.imgur.com/bdx9fzT.png">
-            </div>
+            <img class="bottom_image" src="https://i.imgur.com/bdx9fzT.png">
             <p class="bottom_text" style="color: #17bf2d; font-size: 17px;">Dokument ważny</p>
         </div>
     </div>
     
-    <!-- Reszta przycisków i pól (zabezpieczona przez body oncontextmenu) -->
     <div class="top-buttons">
         <button onclick="sendTo('qr')">
           <div class="icon-circle">
-            <div class="shield"></div>
             <img src="https://i.imgur.com/DGBsoYY.png" alt="Potwierdź">
           </div>
           <span>Potwierdź<br>swoje&nbsp;dane</span>
         </button>
         <button onclick="sendTo('moreid')">
           <div class="icon-circle">
-            <div class="shield"></div>
             <img src="https://i.imgur.com/2SPOxrW.png" alt="Dowód">
           </div>
           <span>Dane<br>dowodu<br>osobistego</span>
         </button>
         <button onclick="sendTo('pesel')">
             <div class="icon-circle">
-              <div class="shield"></div>
               <img src="https://i.imgur.com/aDXGRtB.png" alt="PESEL">
             </div>
             <span>Zastrzeż PESEL</span>
           </button>
       <button onclick="sendTo('shortcuts')">
             <div class="icon-circle">
-              <div class="shield"></div>
               <img src="https://i.imgur.com/KYGZHxe.png" alt="Więcej">
             </div>
             <span>Pozostałe skróty</span>
           </button>
       </div>
-
+            
     <div class="card custom-card">
         <div class="field">
             <label>Seria i numer mDowodu</label>
@@ -232,8 +157,8 @@
             <strong>Ewa</strong>
         </div>
     </div>
-
-    <script src="assets/bar.js" defer></script>
+            
+    <script src="bar.js" defer></script>
     <script src="assets/card.js?v=1.0"></script>
     <script src="assets/manifest.js"></script>
 </body>
