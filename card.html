@@ -15,28 +15,7 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"> 
     <meta name="theme-color" content="#121212">
     <style>
-        /* Zabezpieczenie obrazów bez psucia układu */
-        .id_image_data {
-            position: relative;
-        }
-        
-        /* Niewidzialna nakładka na całą sekcję danych dowodu */
-        .protection-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 100;
-            background: transparent;
-        }
 
-        /* Upewnienie się, że obrazy nie są przeciągalne */
-        img {
-            -webkit-user-drag: none;
-            user-drag: none;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body class="has-blur-topbar" oncontextmenu="return false;">
